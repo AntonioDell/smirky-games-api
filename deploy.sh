@@ -1,0 +1,1 @@
+echo $SERVER_USERNAME
