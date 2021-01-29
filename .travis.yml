@@ -13,4 +13,4 @@ before_install:
   provider: script
   script: secrethub run -- bash ./deploy.sh
   on:
-    branch: develop
+    branch: dev
