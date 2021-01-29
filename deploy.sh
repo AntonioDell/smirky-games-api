@@ -1,1 +1,0 @@
-echo "Your username is: $SERVER_USERNAME"
