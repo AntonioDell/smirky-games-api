@@ -9,5 +9,8 @@ before_install:
   - echo "deb [trusted=yes] https://apt.secrethub.io stable main" | sudo tee /etc/apt/sources.list.d/secrethub.sources.list
   - sudo apt-get update && sudo apt-get install -y secrethub-cli
 
-script:
-  - secrethub run -- ./deploy.sh
+  deploy:
+  provider: script
+  script: secrethub run -- bash ./deploy.sh
+  on:
+    branch: develop
