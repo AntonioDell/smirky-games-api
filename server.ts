@@ -3,7 +3,7 @@ import { Application } from "https://deno.land/x/oak/mod.ts";
 const app = new Application();
 
 app.use((ctx) => {
-  ctx.response.body = { message: "Hello World!" };
+  ctx.response.body = { message: "Hello Nerd!" };
 });
 
 console.log("Listening on http://localhost:8001");
