@@ -1,10 +1,16 @@
-import { Application } from "https://deno.land/x/oak/mod.ts";
-import { login } from "./src/routes.ts";
+import {Application, logger} from "./deps.ts"
+import router from "./src/router.ts";
+import { registerSessionMiddleWare } from "./src/session.ts";
 
 const port = 8001;
 const app = new Application();
 
-app.use(login);
+
+await registerSessionMiddleWare(app);
+
+app.use(router.routes());
+app.use(router.allowedMethods());
+app.use(logger.logger);
 
 console.log(`Listening on http://localhost:${port}`);
 await app.listen({ port });

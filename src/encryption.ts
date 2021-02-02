@@ -1,13 +1,4 @@
-import crypto from "https://deno.land/std@0.84.0/node/crypto.ts";
-import { Buffer } from "http://deno.land/x/node_buffer/index.ts";
-
-/**
- * Using crypto.pbkdf2 results in very bad performance, regardless of settings.
- * Because of this, we use the default pbkdf2 node package through jspm.
- */
-import { pbkdf2 as pbkdf2Import } from "https://jspm.dev/pbkdf2";
-/** This line is used to fix a typescript error. */
-const pbkdf2: any = pbkdf2Import;
+import {crypto, Buffer, pbkdf2 }from "../deps.ts";
 
 const defaults = {
   /**
@@ -69,7 +60,6 @@ export function hashPassword(password: any) {
     });
   }).then((salt: any) => {
     return new Promise((resolve, reject) => {
-      let start = Date.now();
       pbkdf2(
         password,
         salt,
@@ -96,7 +86,6 @@ export function hashPassword(password: any) {
 
           salt.copy(combined, 8);
           hash.copy(combined, salt.length + 8);
-          console.log(`pbkdf2 used ${Date.now() - start}ms to execute.`);
           resolve(combined.toString(defaults.encoding));
         },
       );
@@ -137,8 +126,6 @@ export function verifyPassword(password: any, combined: any) {
     /**
     *   verify the salt and hash against the password
     */
-    let start = Date.now();
-
     pbkdf2(
       password,
       salt,
@@ -149,7 +136,6 @@ export function verifyPassword(password: any, combined: any) {
         if (err) {
           reject(err);
         }
-        console.log(`pbkdf2 used ${Date.now() - start}ms to execute.`);
         resolve(verify.toString(defaults.encoding) === hash);
       },
     );
