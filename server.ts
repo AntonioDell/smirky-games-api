@@ -1,10 +1,9 @@
-import {Application, logger} from "./deps.ts"
+import { Application, logger } from "./deps.ts";
 import router from "./src/router.ts";
 import { registerSessionMiddleWare } from "./src/session.ts";
 
-const port = 8001;
+const port = parseInt(Deno.env.get("PORT") || "8001");
 const app = new Application();
-
 
 await registerSessionMiddleWare(app);
 
