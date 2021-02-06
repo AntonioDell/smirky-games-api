@@ -24,3 +24,5 @@ export {
   Session,
   SessionData,
 } from "https://raw.githubusercontent.com/revgum/session/master/mod.ts";
+
+export { Bson, MongoClient } from "https://deno.land/x/mongo@v0.21.2/mod.ts";
