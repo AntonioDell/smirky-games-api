@@ -21,4 +21,9 @@ ADD . .
 # Compile the main app so that it doesn't need to be compiled each startup/entry.
 RUN deno cache server.ts
 
-CMD ["run", "--allow-net", "--allow-env", "--unstable", "--watch", "server.ts"]
+# Enable this line if you want hot reload
+CMD ["run", "-A", "--unstable", "--watch", "server.ts"]
+
+# FIXME: why doesnt this work? 
+# Enable this line if you want vscode debugging
+# CMD ["run", "--inspect=0.0.0.0:9229", "-A", "--unstable", "server.ts"]
