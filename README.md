@@ -7,11 +7,19 @@ We use [Deno](https://deno.land/) as runtime, pm2 as process manager on the serv
 
 ## Development
 
+### Using docker
+
+When using a docker container as development environment, attaching a debugger to the server is not possible (to my knowlegde).
+
 In order to start the local docker container for development, you will need to have docker and docker-compose installed.
 
 Run `sudo docker-compose up -d` to start 
 1. the backend on port 8001 and
 2. a mongodb server on port 27017.
+
+### Using VSCode launch.json
+
+Press `F5` to run the server and attach the vscode debugger to it. You can then set breakpoints and debug normally.
 
 ## Deployment
 

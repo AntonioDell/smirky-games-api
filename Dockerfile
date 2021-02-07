@@ -24,6 +24,6 @@ RUN deno cache server.ts
 # Enable this line if you want hot reload
 CMD ["run", "-A", "--unstable", "--watch", "server.ts"]
 
-# FIXME: why doesnt this work? 
+# FIXME: why doesn't this work? 
 # Enable this line if you want vscode debugging
 # CMD ["run", "--inspect=0.0.0.0:9229", "-A", "--unstable", "server.ts"]
