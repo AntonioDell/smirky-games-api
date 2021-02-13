@@ -1,7 +1,8 @@
 version: "3.7"
 services:
   deno-container:
-    build: .
+    build: 
+      context: ../
     container_name: deno-docker
     ports:
       - 8001:8001
