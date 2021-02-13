@@ -23,10 +23,18 @@ Press `F5` to run the server and attach the vscode debugger to it. You can then 
 
 ## Deployment
 
-[THIS SECTION IS OUTDATED FOR DOCKER]
+We use [Docker](https://www.docker.com/) for building the api backend and deploying to our server.
 
-Run the [deploy.sh](scripts/deploy.sh) with the username as first command line argument to deploy the files to the server. You need to have a ssh certificate installed and used by the ssh-agent in order for the ssh connection to succeed.
+### Pre-requesits
 
+1. Install docker and docker-compose on your deployment/development machine
+2. Import the [remote.dockercontext](./remote.dockercontext) via `docker context import remote.dockercontext` and modify DOCKER ENDPOINT (can be inspoected by using `docker context ls`) by running `docker context update ...` (see documentation for how to change a context).
+3. You need to have a ssh certificate installed and used by the ssh-agent in order for the ssh connection to succeed.
+4. Install docker and docker-compose on your server
+
+### Deploy docker image
+
+Simply run the [deploy.sh](scripts/deploy.sh). 
 
 # License
 MIT License © 2021 Antonio Dell'Annunziata
