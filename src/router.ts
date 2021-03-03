@@ -1,6 +1,10 @@
 import { Context, Router, Status } from "../deps.ts";
 import { hashPassword, verifyPassword } from "./encryption.ts";
-import { createAuthenticatedSession, deleteSession, isSessionAuthenticated } from "./session.ts";
+import {
+  createAuthenticatedSession,
+  deleteSession,
+  isSessionAuthenticated,
+} from "./session.ts";
 
 const router = new Router();
 
@@ -58,7 +62,7 @@ router.post("/login", async (ctx: Context, next) => {
 
   if (isVerified) {
     const x = ctx.response.headers;
-    ctx.cookies.set("test", "testValue", {maxAge: 60})
+    ctx.cookies.set("test", "testValue", { maxAge: 60 });
     createAuthenticatedSession(userName, await ctx.state.session);
     ctx.response.body = "You should have received a cookie!";
     ctx.response.headers.append("Content-Type", "text/plain");
@@ -75,6 +79,18 @@ router.post("/logout", async (ctx: Context, next) => {
   ctx.response.status = Status.OK;
 
   await next();
-})
+});
+
+router.post("/contact", async (context: Context, next) => {
+  console.debug(`Received the following form:`, await context.request.body);
+});
+
+router.get("/test", async (context: Context, next) => {
+  context.response.body = "I'm up and running!";
+  context.response.headers.append("Content-Type", "text/plain");
+  context.response.status = Status.OK;
+
+  await next();
+});
 
 export default router;

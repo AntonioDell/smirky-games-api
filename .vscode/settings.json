@@ -8,5 +8,5 @@
     },
     "deno.lint": true,
     "deno.unstable": true,
-    "debug.javascript.usePreview": false,
+    "debug.javascript.usePreview": false
   }

@@ -19,7 +19,11 @@ Run `sudo docker-compose up -d` to start
 
 ### Using VSCode launch.json
 
-Press `F5` to run the server and attach the vscode debugger to it. You can then set breakpoints and debug normally.
+Press `F5` to run the server either with the profile `Deno debug` or `Deno hot reload`. 
+
+With debug you can then set breakpoints and debug normally.
+
+With hot reload you can instantly test changes to your code.
 
 ## Deployment
 
