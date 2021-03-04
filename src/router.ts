@@ -1,10 +1,11 @@
-import { Context, Router, Status } from "../deps.ts";
+import { Context, FormDataReader, Router, Status } from "../deps.ts";
 import { hashPassword, verifyPassword } from "./encryption.ts";
 import {
   createAuthenticatedSession,
   deleteSession,
   isSessionAuthenticated,
 } from "./session.ts";
+import { insertContact } from "./db.ts";
 
 const router = new Router();
 
@@ -82,7 +83,36 @@ router.post("/logout", async (ctx: Context, next) => {
 });
 
 router.post("/contact", async (context: Context, next) => {
-  console.debug(`Received the following form:`, await context.request.body);
+  console.debug(`Received the following form:`);
+  if (!context.request.hasBody) {
+    context.response.body = "Contact empty!";
+    context.response.headers.append("Content-Type", "text/plain");
+    context.response.status = Status.BadRequest;
+
+    await next();
+    return;
+  }
+
+  const body = context.request.body();
+  if (body.type !== "form-data") {
+    context.response.body = "Type is no form-data!";
+    context.response.headers.append("Content-Type", "text/plain");
+    context.response.status = Status.BadRequest;
+
+    await next();
+    return;
+  }
+
+  const formReader = <FormDataReader> context.request.body().value;
+  const form = await formReader.read();
+
+  await insertContact(form.fields["message"], form.fields["email"], form.fields["name"]);
+
+  context.response.body = "Contact established!";
+  context.response.headers.append("Content-Type", "text/plain");
+  context.response.status = Status.OK;
+
+  await next();
 });
 
 router.get("/test", async (context: Context, next) => {

@@ -1,12 +1,13 @@
 export { Context } from "https://deno.land/x/oak@v6.5.0/context.ts";
 export { Router } from "https://deno.land/x/oak@v6.5.0/router.ts";
+export { oakCors } from "https://deno.land/x/cors/mod.ts";
 
 // std
 export { Status } from "https://deno.land/std@0.85.0/http/http_status.ts";
 export type { Cookie } from "https://deno.land/std/http/cookie.ts";
 import cryptoImport from "https://deno.land/std@0.85.0/node/crypto.ts";
 export type { CookiesSetDeleteOptions } from "https://deno.land/x/oak@v6.5.0/mod.ts";
-export { Application } from "https://deno.land/x/oak@v6.5.0/mod.ts";
+export { Application, FormDataReader } from "https://deno.land/x/oak@v6.5.0/mod.ts";
 import loggerImport from "https://deno.land/x/oak_logger@1.0.0/mod.ts";
 export const logger = loggerImport;
 

@@ -6,14 +6,15 @@ services:
     container_name: deno-docker
     ports:
       - 8001:8001
+    depends_on:
+      - "mongodb_container"
   mongodb_container:
     image: mongo:latest
+    restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
     ports:
       - 27017:27017
     volumes:
-      - mongodb_data_container:/data/db
-volumes:
-  mongodb_data_container:
+      - ~/data/db:/data/db

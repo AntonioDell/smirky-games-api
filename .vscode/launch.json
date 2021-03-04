@@ -7,7 +7,7 @@
       "name": "Deno debug",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "deno",
-      "runtimeArgs": ["run", "--inspect", "-A", "--unstable", "server.ts"],
+      "runtimeArgs": ["run", "--inspect", "-A", "--unstable", "-r", "server.ts", "dev"],
       "attachSimplePort": 9229
     },
     {
@@ -16,7 +16,8 @@
       "name": "Deno hot reload",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "deno",
-      "runtimeArgs": ["run", "--watch", "-A", "--unstable", "server.ts"],
+      "runtimeArgs": ["run", "--watch", "-A", "--unstable", "-r", "server.ts", "dev"],
+      "console": "integratedTerminal"
     }
   ]
 }

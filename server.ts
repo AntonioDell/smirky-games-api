@@ -1,4 +1,4 @@
-import { Application, logger } from "./deps.ts";
+import { Application, logger, oakCors } from "./deps.ts";
 import router from "./src/router.ts";
 import { registerSessionMiddleWare } from "./src/session.ts";
 
@@ -7,6 +7,10 @@ const app = new Application();
 
 await registerSessionMiddleWare(app);
 
+if (Deno.args[0] === "dev") {
+  console.log("Allow cors");
+  app.use(oakCors({ origin: "*" }));
+}
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(logger.logger);
