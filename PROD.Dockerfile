@@ -22,4 +22,4 @@ ADD . .
 RUN deno cache server.ts
 
 # Enable this line if you want hot reload
-CMD ["run", "--allow-net", "--allow-read", "--allow-env", "server.ts"]
+CMD ["run", "--allow-net", "--allow-read","--allow-write", "--allow-env", "server.ts"]
